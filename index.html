@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jiya, Will You Be My Valentine? 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    img {
+      width: 200px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 500;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button {
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #yes {
+      background: #22c55e;
+      color: white;
+      padding: 10px 22px;
+      transition: all 0.2s ease;
+    }
+
+    /* NO button: fixed size, safe text */
+    #no {
+      background: #ef4444;
+      color: white;
+      width: 180px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      overflow: hidden;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" id="container">
+    <img src="https://media.tenor.com/0AVbKGY_MxMAAAAi/peach-goma-love.gif" alt="cute bear" />
+    <h1>Dear <b>Jiya</b>, Will you be my Valentine? 🥺</h1>
+
+    <div class="buttons">
+      <button id="yes">Yes</button>
+      <button id="no">No</button>
+    </div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById('yes');
+    const noBtn = document.getElementById('no');
+    const container = document.getElementById('container');
+
+    let noClickCount = 0;
+
+    yesBtn.addEventListener('click', () => {
+      container.innerHTML = `
+        <img src="https://media.tenor.com/1w0ZK8kYpNMAAAAi/peach-goma-hug.gif" />
+        <h1>YAY!!! 💖💖💖</h1>
+        <p>You just made me the happiest 🥰</p>
+      `;
+    });
+
+    noBtn.addEventListener('click', () => {
+      noClickCount++;
+
+const messages = [
+  'Are you sure? 😢',
+  'Think again 🥺',
+  'Please say yes 💔',
+  'You\'re breaking my heart 😭',
+  'Cutter Chicken ki Kasam :)',
+  'I am gonna die',
+  'Died',
+  'Vishal\'s Ghost Here 👻',
+  'Please Bacha 😭'
+];
+
+
+      noBtn.innerText =
+        messages[Math.min(noClickCount - 1, messages.length - 1)];
+
+      // Reset NO font size
+      noBtn.style.fontSize = '14px';
+
+      // Grow YES button only
+      const currentSize = parseFloat(
+        window.getComputedStyle(yesBtn).fontSize
+      );
+      yesBtn.style.fontSize = currentSize + 6 + 'px';
+      yesBtn.style.padding = '16px 36px';
+
+      // Auto-shrink NO text to fit inside
+      while (noBtn.scrollWidth > noBtn.clientWidth) {
+        const size = parseFloat(
+          window.getComputedStyle(noBtn).fontSize
+        );
+        noBtn.style.fontSize = size - 1 + 'px';
+      }
+    });
+  </script>
+</body>
+</html>
